@@ -75,27 +75,18 @@
 	}
 	console.log(sqrtSequentialSelection(30));
 	//binary
-	const sqrtBinarySearch = () => {
-		// let m=0;
-		// let right=k;
-		// let left=0;
-		// for(let i=0;i<=right;i+=0.001){
-		
-		// 	temp=i;
-		// 	// console.log("____________________");
-		// 	// console.log(i);
-		// 	m=(right+left)/2;	
-		// 	if (k<m*m) {
-		// 		right=m;
-		// 	}
-		// 	else {
-		// 		if (m*m==k) {break;}
-		// 		i=m-1;
-		// 		left=m;
-		// 	}
-		// 	//console.log(i);
-		// }
+	const sqrtBinarySearch = number => {
+		let left=0;
+		let right=number;
+		let m=null;
+		do{ 
+			m=(left+right + (left+right)%2)/2;
+			if(m**2>number) right=m;
+			else left=m;
+		}while(right-left>1);
+		return number-left**2>right**2-number?right:left;
 	}
+	console.log(sqrtBinarySearch(i));
 	//4
 	const factorial = n => {
 		for(let i=n-1; i>0; i--) n*=i;
