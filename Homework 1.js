@@ -1,4 +1,3 @@
-
 	//1
 	const func1 = (a,b) => a%2 === 0 ? a*b : a+b;
 	//2
@@ -193,10 +192,36 @@
 		return array;
 	}
 	//10
-	const arrayQuickSort = array => {
-		//not finished
-	};
-	//[1,5,3,88,3,763,11,654,5676,5436455,4,0,-4,567]
+	//quick sort--------------------------------------------------------------
+	const part = (array, left, right) => {
+	    let item=array[(right+left - (right+left)%2)/2];
+	    let i=left;
+	    let j=right;
+	    while (i<=j) {
+	        while (array[i]>item) i++;
+	        while (array[j]<item) j--;
+	        if (i<=j) {
+	            let temp=array[i];
+	            array[i]=array[j];
+	            array[j]=temp;
+	            i++;
+	            j--;
+	        }
+	    }
+	    return i;
+	}
+	const arrayQuickSort = (array, left, right) => {
+		left=typeof left!="number"?0:left;
+        right=typeof right!="number"?array.length-1:right;
+    	let index;
+    	if (array.length>1) {
+        	index = part(array, left, right);
+        	if (left<index-1) arrayQuickSort(array, left, index-1)
+       		if (index<right) arrayQuickSort(array, index, right);
+    	}
+    	return array;
+	}
+	//--------------------------------------------------------------------------
 	
 	const arrayShellSort = array => {
 	    let step=(array.length-array.length%2)/2;
