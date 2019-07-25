@@ -239,6 +239,35 @@
 	    }
     	return array;
 	}
+	//heap sort*********************************************************************
+	let len;
+	const arrayHeapSort = array => {
+		len=array.length;
+    	for (let i=(len-len%2)/2; i>=0; i-=1) heapBranch(array, i);
+    	for (i=len-1; i>=0; i--) {
+        	let temp=array[0];
+        	array[0]=array[i];
+        	array[i]=temp;
+        	len--;
+        	heapBranch(array, 0);
+    	}
+	}
+	const heapBranch = (array, i) => {
+    	let left=2*i+1;
+ 	  	let right=2*i+2;
+    	let max=i;
+    	if (left<len && array[left]>array[max]) max=left;
+    	if (right<len && array[right]>array[max]) max=right;
+    	if (max!=i) {
+       		let temp=array[i];
+       		array[i]=array[max];
+       		array[max]=temp;
+        	heapBranch(array, max);
+    	}
+	}
+	let arr=[3,6,2,545,75468,67,44,32,645,7,4,6,5346,457,5,734,53,-5,7749,-1,98,98,7,0,70,6,7,-4,-88,]
+	arrayHeapSort(arr);//using
+	//*******************************************************************************
 	//functions
 	//1
 	const getDayName = number => {
