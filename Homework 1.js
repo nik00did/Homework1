@@ -222,21 +222,22 @@
 	let arrayQuickSort=[1,5,3,88,3,763,11,654,5676,5436455,4,0,-4,567];
 	//not finished
 	const arrayShellSort = array => {
-		for(let step=(array.length-array.length%2)/2;step>0;step=(step-step%2)/2){
-			console.log(step);
-			for(let i=step;i<length;i++){
-				let temp = array[i];
-				for(let j=i;j>=step;j-=step){
-					if(array[j-step]>temp){
-						array[j] = array[j-step];
-						array[j-step] = temp;
-					}
-				}
-			}
-		}
-		return array;
+	    let step=(array.length-array.length%2)/2;
+	    while (step>=1) {
+	        for (let i=step; i<array.length; i++) {
+	            const current=array[i];
+	            let j=i;
+	            while (j>0 && array[j-step]<current) {
+	                array[j]=array[j-step];
+	                j-=step;
+	            }
+	            array[j]=current;
+	        }
+	        step=(step-step%2)/2;
+	    }
+    	return array;
 	}
-	console.log(arrayShellSort([1,5,3,88,3,763,11,654,5676,5436455,4,0,-4,567]));
+	console.log(arrayShellSort([1,5,3,88,3,763,11,654,5676,5436455,10,4,0,-4,567]));
 }
 {//functions
 	//1
