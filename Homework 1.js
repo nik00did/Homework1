@@ -268,6 +268,49 @@
 	let arr=[3,6,2,545,75468,67,44,32,645,7,4,6,5346,457,5,734,53,-5,7749,-1,98,98,7,0,70,6,7,-4,-88,]
 	arrayHeapSort(arr);//using
 	//*******************************************************************************
+	//merge sort+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	const sliceArray = (array,i,j) => {
+		let newArray;
+		if(!j) {
+			newArray=new Array(array.length-i);
+			for(let k=0;k<newArray.length;k++){
+				newArray[k]=array[k+i];
+			}
+			return newArray;
+		}
+		else {
+			newArray=new Array(j-i);
+			for(let k=0,q=i;k<newArray.length,q<j;k++,q++){
+				newArray[k]=array[q];
+			}
+			return newArray;
+		}
+	};
+	const pushElem = ( array, elem) => {
+		let newArray=new Array(array.length+1);
+		for(let i=0;i<array.length;i++) newArray[i]=array[i];
+		newArray[newArray.length-1]=elem;
+		return newArray;
+	}
+	const merge = (first, second) => {
+	    let array=[];
+	    let i=j=0;
+	    while (i<first.length && j<second.length) {
+	    	array=pushElem(array,(first[i]<second[j])?first[i++]:second[j++]);
+	    }
+	    return [
+	    	...array,
+	        ...sliceArray(first,i),
+	        ...sliceArray(second,j)
+	    ];
+	}
+	const arrayMergeSort = array => {
+	    if (array.length<=1) return array;
+	    const middle=(array.length-array.length%2)/2;
+	    const arrLeft=sliceArray(array,0,middle);
+	    const arrRight=sliceArray(array,middle);
+	    return merge(arrayMergeSort(arrLeft), arrayMergeSort(arrRight));
+	};
 	//functions
 	//1
 	const getDayName = number => {
