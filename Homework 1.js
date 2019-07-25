@@ -86,7 +86,7 @@
 		}while(right-left>1);
 		return number-left**2>right**2-number?right:left;
 	}
-	console.log(sqrtBinarySearch(i));
+	console.log(sqrtBinarySearch(10));
 	//4
 	const factorial = n => {
 		for(let i=n-1; i>0; i--) n*=i;
@@ -221,9 +221,22 @@
 	//10
 	let arrayQuickSort=[1,5,3,88,3,763,11,654,5676,5436455,4,0,-4,567];
 	//not finished
-	let arrayShellSort=[1,5,3,88,3,763,11,654,5676,5436455,4,0,-4,567];
-	//not finished
-
+	const arrayShellSort = array => {
+		for(let step=(array.length-array.length%2)/2;step>0;step=(step-step%2)/2){
+			console.log(step);
+			for(let i=step;i<length;i++){
+				let temp = array[i];
+				for(let j=i;j>=step;j-=step){
+					if(array[j-step]>temp){
+						array[j] = array[j-step];
+						array[j-step] = temp;
+					}
+				}
+			}
+		}
+		return array;
+	}
+	console.log(arrayShellSort([1,5,3,88,3,763,11,654,5676,5436455,4,0,-4,567]));
 }
 {//functions
 	//1
