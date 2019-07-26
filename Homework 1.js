@@ -327,3 +327,67 @@
 	}
 	//2
 	const getDistanceBetweenTwoPoints = (point1,point2) => ((point2.x-point1.x)**2+(point2.y-point1.y))**0.5;
+	//extra homework
+	const twoMinElem = array => {
+		let min1=Infinity, min2=Infinity;
+		let indemMin1;
+		for(let i=0;i<array.length;i++){
+			if(array[i]<min1){
+				min1=array[i];
+				indexMin1=i;
+			}
+		}
+		let newArray=new Array(array.length-1);
+		let i=0, j=0;
+		while(i<array.length){
+			if(i===indexMin1){
+				i++;
+				continue;
+			}
+			else{
+				newArray[j]=array[i];
+				if(newArray[j]<min2) min2=newArray[j];
+				i++;
+				j++;
+			}
+		}
+		for(let i=0;i<newArray.length;i++) if(newArray[i]<min2) min2=newArray[i];
+		return [min1,min2];
+	}
+	const averageArray = array => {
+		let average=0;
+		for(let i=0;i<array.length;i++) average+=array[i];
+		return average/2;
+	}
+	const maxRowMatrix = array => {
+		let newArray=new Array(array.length);
+		let max;
+		for(let i=0;i<array.length;i++){
+			max=-Infinity
+			for(let j=0;j<array[i].length;j++) if(array[j][i]>max) max=array[j][i];
+			newArray[i]=max;
+		}
+		return newArray;
+	}
+	const positiveAndNegativeArrays = array => {
+		let positive=[], negative=[];
+		for(let i=0;i<array.length;i++){
+			if(array[i]>0) positive=pushElem(positive,array[i]);
+			else if(array[i]<0) negative=pushElem(negative,array[i]);
+		}
+		return [positive,negative];
+	};
+	const countSimpleNumbers = array => {
+		let count=0;
+		let anotherCount=0;
+		for(let i=0;i<array.length;i++){
+			for(let j=2;j<array[i];j++){
+				if(array[i]%j===0){
+					anotherCount++;
+				}
+			}
+			if(anotherCount===0 && array[i]!==1) count++;
+			anotherCount=0;
+		}
+		return count;
+	}
